@@ -1,0 +1,27 @@
+services:
+  # PostgreSQL database for our services
+  database:
+    build: ./backend-database
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    env_file:
+      - ./backend-database/.env
+
+  # MLFlow server for experiment tracking (uses the database)
+  experiment-tracking:
+    build: ./experiment-tracking
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+    env_file:
+      - ./backend-database/.env
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: mlflow_db
+
+volumes:
+  # storage for persistent database usage
+  postgres-data:
