@@ -22,6 +22,17 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_DB: mlflow_db
 
+  orchestration:
+    build: ./backend-orchestration
+    ports:
+      - 4200:4200
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:4200/api/health')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
 volumes:
   # storage for persistent database usage
   postgres-data:
