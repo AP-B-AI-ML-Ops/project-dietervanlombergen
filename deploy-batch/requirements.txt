@@ -1,0 +1,7 @@
+mlflow
+pandas
+prefect
+psycopg2
+psycopg2-binary
+sqlalchemy
+sqlalchemy_utils
