@@ -1,0 +1,33 @@
+[tool.pylint.messages_control]
+disable = [
+    "missing-function-docstring",
+    "missing-class-docstring",
+    "missing-module-docstring",      # Suppresses C0114
+    "invalid-name",                  # Suppresses C0103 (Allows uppercase X for matrices)
+    "line-too-long",                 # Suppresses C0301
+    "trailing-whitespace",           # Suppresses C0303
+    "missing-final-newline",         # Suppresses C0304
+    "f-string-without-interpolation", # Suppresses W1309
+    "duplicate-code",                 # Suppresses R0801 (Allows identical .pkl data loaders)
+    "too-many-locals",           # Suppresses R0914 (Allows 16+ variables in main orchestration flows)
+    "import-outside-toplevel",
+    "redefined-outer-name",     #  Zorgt dat Pytest fixtures niet falen
+    "unused-argument",          #  Zorgt dat Pytest fixtures niet falen
+    "unused-import",            #  Zorgt dat rondslingerende imports geen crash veroorzaken
+    "import-error"
+]
+
+[tool.pylint.format]
+max-line-length = 88
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    ".", "experiment-tracking"
+]
