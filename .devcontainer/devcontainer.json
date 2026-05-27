@@ -1,0 +1,14 @@
+{
+    "name": "project-dev",
+    "dockerComposeFile": ["../docker-compose.yml"],
+    "service": "project-dev",
+    "shutdownAction": "none",
+    "workspaceFolder": "/workspace/",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-toolsai.jupyter"
+            ]
+        }
+    }
+}

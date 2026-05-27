@@ -33,6 +33,37 @@ services:
       retries: 10
       start_period: 10s
 
+  web-service:
+    build: ./web-api
+    depends_on:
+      orchestration:
+        condition: service_healthy
+    volumes:
+      - batch-data:/batch-data
+
+  batch-service:
+    build: ./deploy-batch
+    depends_on:
+      orchestration:
+        condition: service_healthy
+    volumes:
+      - batch-data:/batch-data
+  train-deploy:
+    build: ./train-deploy
+    depends_on:
+      orchestration:
+        condition: service_healthy
+      experiment-tracking:
+        condition: service_started
+
+
+  project-dev:
+    image: mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
+
 volumes:
   # storage for persistent database usage
   postgres-data:
+  batch-data:

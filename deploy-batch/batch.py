@@ -89,7 +89,7 @@ if __name__ == "__main__":
         name="solar-monthly-batch-deployment",
         schedule=CronSchedule(cron="0 0 * * *", timezone="Europe/Brussels"),
         parameters={
-            "input_file_path": "../experiment-tracking/output/val.pkl", 
+            "input_file_path": "train-deploy/output/val.pkl", 
             "output_base_dir": "./batch-reports"
         }
     )

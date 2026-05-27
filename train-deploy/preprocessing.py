@@ -81,6 +81,6 @@ def solar_preprocessing_flow(data_dir: str, output_dir: str):
 
 if __name__ == "__main__":
     solar_preprocessing_flow(
-        data_dir="../data/", 
+        data_dir="data/", 
         output_dir="./output"
     )

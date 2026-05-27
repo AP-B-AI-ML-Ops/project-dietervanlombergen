@@ -9,7 +9,7 @@ from register_model import solar_registration_flow
 
 @flow()
 def main_training_flow(
-    raw_data_dir: str = "../data/", 
+    raw_data_dir: str = "data/", 
     artifacts_dir: str = "./output", 
     hpo_trials: int = 15):
 
@@ -22,7 +22,7 @@ def main_training_flow(
 
 if __name__ == "__main__":
     main_training_flow(
-        raw_data_dir="../data/", 
+        raw_data_dir="data/", 
         artifacts_dir="./output", 
         hpo_trials=15
     )

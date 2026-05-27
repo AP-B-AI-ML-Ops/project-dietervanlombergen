@@ -1,0 +1,10 @@
+requests
+mlflow
+pandas
+prefect
+evidently
+pandas
+psycopg2
+psycopg2-binary
+sqlalchemy
+sqlalchemy_utils
