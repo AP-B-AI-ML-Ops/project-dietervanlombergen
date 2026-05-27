@@ -11,4 +11,3 @@ RUN prefect config set PREFECT_API_URL=http://orchestration:4200/api
 RUN chmod +x ./startPoolWorkers.sh
 
 CMD [ "./startPoolWorkers.sh" ]
-

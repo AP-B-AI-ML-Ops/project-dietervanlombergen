@@ -1,6 +1,6 @@
 import mlflow
 import pandas as pd
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask("solar-energy-prediction")
 
@@ -15,7 +15,7 @@ model = mlflow.pyfunc.load_model(f"models:/{MODEL_NAME}/{MODEL_VERSION}")
 @app.route("/predict", methods=["POST"])
 def predict_endpoint():
     """
-    REST API Endpoint accepting weather forecast data inputs 
+    REST API Endpoint accepting weather forecast data inputs
     and returning the predicted solar energy production in MW.
     """
     # 2. Extract JSON payload containing weather forecast details
@@ -23,20 +23,22 @@ def predict_endpoint():
 
     # 3. Restructure payload into a DataFrame matching training features
     # Expects columns: 'radiation_wm2', 'sin_hour', 'cos_hour'
-    input_features = pd.DataFrame([{
-        "radiation_wm2": float(forecast_data["radiation_wm2"]),
-        "sin_hour": float(forecast_data["sin_hour"]),
-        "cos_hour": float(forecast_data["cos_hour"])
-    }])
+    input_features = pd.DataFrame(
+        [
+            {
+                "radiation_wm2": float(forecast_data["radiation_wm2"]),
+                "sin_hour": float(forecast_data["sin_hour"]),
+                "cos_hour": float(forecast_data["cos_hour"]),
+            }
+        ]
+    )
 
     # 4. Generate prediction using the loaded MLflow model pipeline
     predictions = model.predict(input_features)
     predicted_production_mw = float(predictions[0])
 
     # 5. Build and return response
-    result = {
-        'predicted_energy_production_mw': predicted_production_mw
-    }
+    result = {"predicted_energy_production_mw": predicted_production_mw}
 
     return jsonify(result)
 

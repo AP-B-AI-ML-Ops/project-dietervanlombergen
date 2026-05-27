@@ -127,7 +127,7 @@ python batch.py
 
 ###  Handmatig een proefrun start
 
-Open een nieuw browser tabblad en ga naar de UI op localhost:4200. Daar kan je een nieuwe deployment starten. 
+Open een nieuw browser tabblad en ga naar de UI op localhost:4200. Daar kan je een nieuwe deployment starten.
 
 ### (Optioneel) Handmatig een proefrun forceren
 

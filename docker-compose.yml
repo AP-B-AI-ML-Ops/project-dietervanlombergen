@@ -50,6 +50,8 @@ services:
       - batch-data:/batch-data
   train-deploy:
     build: ./train-deploy
+    volumes:
+      - ./data:/data
     depends_on:
       orchestration:
         condition: service_healthy
